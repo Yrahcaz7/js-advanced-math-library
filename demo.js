@@ -57,3 +57,16 @@ async function testTetration() {
         document.getElementById("result3").innerHTML = "Result: around " + numC + "e" + e;
     } else document.getElementById("result3").innerHTML = "Result: " + numC;
 };
+
+function testRandomInt() {
+    var numA = document.getElementById("userInput4A").value;
+    var numB = document.getElementById("userInput4B").value;
+    numC = advMath.randomInt(numA, numB);
+    if (numC >= 1e9) {
+        for (var e = 0; numC >= 10; numC = numC / 10) {
+            e++;
+        };
+        numC = Math.round(numC * 1000000) / 1000000;
+        document.getElementById("result4").innerHTML = "Result: around " + numC + "e" + e;
+    } else document.getElementById("result4").innerHTML = "Result: " + numC;
+};
