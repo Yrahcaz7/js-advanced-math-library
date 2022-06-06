@@ -41,3 +41,19 @@ function testToDegrees() {
         document.getElementById("result2").innerHTML = "Result: around " + num + "e" + e;
     } else document.getElementById("result2").innerHTML = "Result: " + num;
 };
+
+async function testTetration() {
+    var numA = document.getElementById("userInput3A").value;
+    var numB = document.getElementById("userInput3B").value;
+    document.getElementById("result3").innerHTML = "Computing...";
+    await sleep(10);
+    numC = advMath.tetration(numA, numB);
+    if (numC === Infinity) document.getElementById("result3").innerHTML = "Result: Infinity";
+    else if (numC >= 1e9) {
+        for (var e = 0; numC >= 10; numC = numC / 10) {
+            e++;
+        };
+        numC = Math.round(numC * 1000000) / 1000000;
+        document.getElementById("result3").innerHTML = "Result: around " + numC + "e" + e;
+    } else document.getElementById("result3").innerHTML = "Result: " + numC;
+};
