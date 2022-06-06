@@ -21,5 +21,11 @@ var advMath = advMath || (function() {
 			};
 			return result;
 	   	},
+		toRadians: function(number) {
+			number = number * 180 / Math.PI;
+		},
+		toDegrees: function(number) {
+			number = number * Math.PI / 180;
+		},
 	};
 })();
