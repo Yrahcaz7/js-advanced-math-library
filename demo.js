@@ -9,6 +9,8 @@ async function testMatches() {
     document.getElementById("result0").innerHTML = "Computing...";
     await sleep(10);
     num = advMath.matches(num);
+    if (num === Infinity) document.getElementById("result0").innerHTML = "Result: Infinity";
+    if (num === -Infinity) document.getElementById("result0").innerHTML = "Result: -Infinity";
     if (num >= 1e9) {
         for (var e = 0; num >= 10; num = num / 10) {
             e++;
@@ -21,6 +23,8 @@ async function testMatches() {
 function testToRadians() {
     var num = document.getElementById("userInput1").value;
     num = advMath.toRadians(num);
+    if (num === Infinity) document.getElementById("result1").innerHTML = "Result: Infinity";
+    if (num === -Infinity) document.getElementById("result1").innerHTML = "Result: -Infinity";
     if (num >= 1e9) {
         for (var e = 0; num >= 10; num = num / 10) {
             e++;
@@ -33,6 +37,8 @@ function testToRadians() {
 function testToDegrees() {
     var num = document.getElementById("userInput2").value;
     num = advMath.toDegrees(num);
+    if (num === Infinity) document.getElementById("result2").innerHTML = "Result: Infinity";
+    if (num === -Infinity) document.getElementById("result2").innerHTML = "Result: -Infinity";
     if (num >= 1e9) {
         for (var e = 0; num >= 10; num = num / 10) {
             e++;
@@ -49,6 +55,7 @@ async function testTetration() {
     await sleep(10);
     numC = advMath.tetration(numA, numB);
     if (numC === Infinity) document.getElementById("result3").innerHTML = "Result: Infinity";
+    if (numC === -Infinity) document.getElementById("result3").innerHTML = "Result: -Infinity";
     else if (numC >= 1e9) {
         for (var e = 0; numC >= 10; numC = numC / 10) {
             e++;
@@ -62,6 +69,8 @@ function testRandomInt() {
     var numA = document.getElementById("userInput4A").value;
     var numB = document.getElementById("userInput4B").value;
     numC = advMath.randomInt(numA, numB);
+    if (numC === Infinity) document.getElementById("result4").innerHTML = "Result: Infinity";
+    if (numC === -Infinity) document.getElementById("result4").innerHTML = "Result: -Infinity";
     if (numC >= 1e9) {
         for (var e = 0; numC >= 10; numC = numC / 10) {
             e++;

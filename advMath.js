@@ -9,6 +9,7 @@ var advMath = advMath || (function() {
 	   	matches: function(number) {
 			number = Math.trunc(+number);
 			if (number !== number) return NaN;
+			if (number === Infinity) return Infinity;
 			if (number < 2) return 0;
 			var result = 0;
 			for (number = Math.trunc(+number); number > 0; number--) {
@@ -32,6 +33,8 @@ var advMath = advMath || (function() {
 			height = Math.trunc(+height);
 			base = +base;
 			if (height !== height || base !== base || height < -1) return NaN;
+			if (height === Infinity || base === Infinity) return Infinity;
+			if (base === -Infinity) return -Infinity;
 			if (height == 0 || base == 1) return 1;
 			if (height == -1 || base == 0) return 0;
 			var result = base;
@@ -45,6 +48,12 @@ var advMath = advMath || (function() {
 			max = Math.floor(+max);
 			roundV = 10 ** Math.trunc(+roundPlaceValue);
 			if (min !== min || max !== max || roundV !== roundV || min > max) return NaN;
+			if (min === -Infinity && max === Infinity) {
+				if (Math.random() >= 0.5) return Infinity;
+				return -Infinity;
+			};
+			if (min === -Infinity) return -Infinity;
+			if (max === Infinity) return Infinity;
 			if (min == max) return min;
 			if (roundV < 1) return Math.floor(Math.random() * (max - min + 1)) + min;
 			return Math.floor(((Math.random() * (max - min + 1)) + min) / roundV) * roundV;
