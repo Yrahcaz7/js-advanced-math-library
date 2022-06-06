@@ -31,9 +31,9 @@ var advMath = advMath || (function() {
 		tetration: function(height, base) {
 			height = Math.trunc(+height);
 			base = +base;
-			if (height !== height || base !== base || height < 0) return NaN;
-			if (height === 0 || base === 1) return 1;
-			if (base === 0) return 0;
+			if (height !== height || base !== base || height < -1) return NaN;
+			if (height == 0 || base == 1) return 1;
+			if (height == -1 || base == 0) return 0;
 			var result = base;
 			for (let x = 1; x < height; x++) {
 				result = base ** result;
