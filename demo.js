@@ -10,8 +10,7 @@ async function testMatches() {
     await sleep(10);
     num = advMath.matches(num);
     if (num >= 1e9) {
-        var e = 0;
-        for (; num >= 10; num = num / 10) {
+        for (var e = 0; num >= 10; num = num / 10) {
             e++;
         };
         num = Math.round(num * 1000000) / 1000000;
@@ -23,8 +22,7 @@ function testToRadians() {
     var num = document.getElementById("userInput1").value;
     num = advMath.toRadians(num);
     if (num >= 1e9) {
-        var e = 0;
-        for (; num >= 10; num = num / 10) {
+        for (var e = 0; num >= 10; num = num / 10) {
             e++;
         };
         num = Math.round(num * 1000000) / 1000000;
@@ -36,8 +34,7 @@ function testToDegrees() {
     var num = document.getElementById("userInput2").value;
     num = advMath.toDegrees(num);
     if (num >= 1e9) {
-        var e = 0;
-        for (; num >= 10; num = num / 10) {
+        for (var e = 0; num >= 10; num = num / 10) {
             e++;
         };
         num = Math.round(num * 1000000) / 1000000;
