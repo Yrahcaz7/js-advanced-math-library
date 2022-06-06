@@ -40,5 +40,14 @@ var advMath = advMath || (function() {
 			};
 			return result;
 		},
+		randomInt: function(min, max, roundPlaceValue = 0) {
+			min = Math.ceil(+min);
+			max = Math.floor(+max);
+			roundV = 10 ** Math.trunc(+roundPlaceValue);
+			if (min !== min || max !== max || roundV !== roundV || min > max) return NaN;
+			if (min == max) return min;
+			if (roundV < 1) return Math.floor(Math.random() * (max - min + 1)) + min;
+			return Math.floor(((Math.random() * (max - min + 1)) + min) / roundV) * roundV;
+		},
 	};
 })();
