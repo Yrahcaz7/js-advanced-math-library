@@ -2,19 +2,42 @@
 
 <head>
     <title>Demo</title>
+    <link rel="stylesheet" type="text/css" href="demo.css"></script>
     <script src="advMath.js"></script>
     <script src="demo.js"></script>
 </head>
 
 <body style="text-align:center">
-    Demo for matches function:
-    <br><br>
-    <label for="num">Enter a number:</label>
-    <input type="text" id="userInput">
-    <button onclick="testMatches()">Submit</button>
-    <br>
-    <br>
-    <span id="result"></span>
+    <span class="box">
+        Matches function:
+        <br><br>
+        <label for="num">Enter a number:</label>
+        <input type="text" id="userInput0">
+        <button onclick="testMatches()">Calculate</button>
+        <br>
+        <br>
+        <span id="result0">Result: not tried yet</span>
+    </span>
+    <span class="box">
+        Degrees to radians function:
+        <br><br>
+        <label for="num">Enter a number:</label>
+        <input type="text" id="userInput1">
+        <button onclick="testToRadians()">Calculate</button>
+        <br>
+        <br>
+        <span id="result1">Result: not tried yet</span>
+    </span>
+    <span class="box">
+        Radians to degrees function:
+        <br><br>
+        <label for="num">Enter a number:</label>
+        <input type="text" id="userInput2">
+        <button onclick="testToDegrees()">Calculate</button>
+        <br>
+        <br>
+        <span id="result2">Result: not tried yet</span>
+    </span>
 </body>
 
 </html>
