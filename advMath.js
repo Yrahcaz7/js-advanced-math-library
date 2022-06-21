@@ -28,7 +28,18 @@ var advMath = advMath || (function() {
 			if (number !== number) return NaN;
 			number = number * 180 / pi;
 			return number;
-		},
+		},/*
+		isPrime: function(number) {
+			number = Math.trunc(+number);
+			if (number < 3 || !number || number === Infinity) return false;
+			for (let num = 2; num < number; number++) {
+				if (number % num === 0) {
+					console.log(num + "|" + (number % num));
+					return false;
+				};
+			};
+			return true;
+		},*///WHYYYY IS IT NOT WORKINGGGGGGGGGGG ARGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
 		tetration: function(height, base) {
 			height = Math.trunc(+height);
 			base = +base;
