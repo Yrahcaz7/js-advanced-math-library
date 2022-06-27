@@ -11,7 +11,7 @@ var advMath = advMath || (function() {
 			if (number !== number) return NaN;
 			if (number === Infinity) return Infinity;
 			if (number < 2) return 0;
-			var result = 0;
+			let result = 0;
 			for (number = Math.trunc(+number); number > 0; number--) {
 				result += number - 1;
 			};
@@ -28,18 +28,31 @@ var advMath = advMath || (function() {
 			if (number !== number) return NaN;
 			number = number * 180 / pi;
 			return number;
-		},/*
-		isPrime: function(number) {
-			number = Math.trunc(+number);
-			if (number < 3 || !number || number === Infinity) return false;
-			for (let num = 2; num < number; number++) {
-				if (number % num === 0) {
-					console.log(num + "|" + (number % num));
-					return false;
+		},
+		// WARNING: toBinary is an experimental function, which
+		// will be very innacurrate with bigger numbers, and
+		// sometimes not work at all.
+		toBinary: function(number, negativeRepresentation = "-") {
+			number = +number;
+			if (number === 0) return "0";
+			if (number === -0) return negativeRepresentation + 0;
+			if (!number) return "NaN";
+			if ((number).toString(2).length >= 32) {
+				let negative = false;
+				if (number < 0) {
+					negative = true;
+					number = -number;
 				};
+				let result = number / (10 ** Math.trunc(Math.log10(number)));
+				result = ((Math.round(result * 1e32)) / 1e32).toString(2);
+				result += "e" + ((number).toString(2).length).toString(2);
+				if (negative) return negativeRepresentation + result;
+				return result;
 			};
-			return true;
-		},*///WHYYYY IS IT NOT WORKINGGGGGGGGGGG ARGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
+			if (number > 0) return (number >>> 0).toString(2);
+			if (number < 0) return negativeRepresentation + (-number).toString(2);
+			return "0";
+		},
 		tetration: function(height, base) {
 			height = Math.trunc(+height);
 			base = +base;
@@ -48,7 +61,7 @@ var advMath = advMath || (function() {
 			if (base === -Infinity) return -Infinity;
 			if (height == 0 || base == 1) return 1;
 			if (height == -1 || base == 0) return 0;
-			var result = base;
+			let result = base;
 			for (let x = 1; x < height; x++) {
 				result = base ** result;
 			};
