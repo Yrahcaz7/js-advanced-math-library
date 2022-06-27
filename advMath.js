@@ -33,25 +33,29 @@ var advMath = advMath || (function() {
 		// will be very innacurrate with bigger numbers, and
 		// sometimes not work at all.
 		toBinary: function(number, negativeRepresentation = "-") {
+			if (number === null || number === undefined || number === NaN || number === "") return NaN;
 			number = +number;
+			let negative = false;
 			if (number === 0) return "0";
-			if (number === -0) return negativeRepresentation + 0;
-			if (!number) return "NaN";
+			if (number === -0) return "" + negativeRepresentation + 0;
+			if (!number) return NaN;
+			if (number < 0) {
+				negative = true;
+				number = -number;
+			};
+			if (number === Infinity) {
+				if (negative) return "" + negativeRepresentation + "Infinity";
+				return "Infinity";
+			};
 			if ((number).toString(2).length >= 32) {
-				let negative = false;
-				if (number < 0) {
-					negative = true;
-					number = -number;
-				};
 				let result = number / (10 ** Math.trunc(Math.log10(number)));
 				result = ((Math.round(result * 1e32)) / 1e32).toString(2);
 				result += "e" + ((number).toString(2).length).toString(2);
-				if (negative) return negativeRepresentation + result;
-				return result;
+				if (negative) return "" + negativeRepresentation + result;
+				return "" + result;
 			};
-			if (number > 0) return (number >>> 0).toString(2);
-			if (number < 0) return negativeRepresentation + (-number).toString(2);
-			return "0";
+			if (negative) return "" + negativeRepresentation + (number).toString(2);
+			return "" + (number).toString(2);
 		},
 		tetration: function(height, base) {
 			height = Math.trunc(+height);
