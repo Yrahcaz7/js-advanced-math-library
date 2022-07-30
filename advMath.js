@@ -1,6 +1,14 @@
 var advMath = advMath || (function() {
 	const pi = Math.PI;
 	return {
+		// advMath.trunc() is a smarter version of Math.trunc().
+		// this one will never mess up on integer values.
+		trunc: function(number) {
+			number = +number;
+			if (number !== number) return NaN;
+			if (number % 1 === 0 || number % 1 === -0) return Math.round(number);
+			return Math.trunc(number);
+		},
 		// numbers higher than...
 			// 1e7 will start to take a bit longer
 			// 1e8 will take too long to compute for run-time calculations
@@ -21,24 +29,23 @@ var advMath = advMath || (function() {
 			number = +number;
 			if (number !== number) return NaN;
 			number = number * pi / 180;
-			return number;
+			return +number;
 		},
 		toDegrees: function(number) {
 			number = +number;
 			if (number !== number) return NaN;
 			number = number * 180 / pi;
-			return number;
+			return +number;
 		},
 		// WARNING: toBinary is an experimental function, which
 		// will be very innacurrate with bigger numbers, and
 		// sometimes not work at all.
 		toBinary: function(number, negativeRepresentation = "-") {
-			if (number === null || number === undefined || number === NaN || number === "") return NaN;
 			number = +number;
+			if (number !== number) return "NaN";
 			let negative = false;
 			if (number === 0) return "0";
-			if (number === -0) return "" + negativeRepresentation + 0;
-			if (!number) return NaN;
+			if (number === -0) return "" + negativeRepresentation + "0";
 			if (number < 0) {
 				negative = true;
 				number = -number;
@@ -69,13 +76,14 @@ var advMath = advMath || (function() {
 			for (let x = 1; x < height; x++) {
 				result = base ** result;
 			};
-			return result;
+			return +result;
 		},
 		randomInt: function(min, max, roundPlaceValue = 0) {
 			min = Math.ceil(+min);
 			max = Math.floor(+max);
 			roundV = 10 ** Math.trunc(+roundPlaceValue);
-			if (min !== min || max !== max || roundV !== roundV || min > max) return NaN;
+			if (min !== min || max !== max || roundV !== roundV) return NaN;
+			if (min > max) [min, max] = [max, min];
 			if (min === -Infinity && max === Infinity) {
 				if (Math.random() >= 0.5) return Infinity;
 				return -Infinity;
