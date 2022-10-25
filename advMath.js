@@ -52,7 +52,7 @@ var advMath = advMath || (function() {
 			};
 			if ((number).toString(2).length >= 32) {
 				let result = number / (10 ** Math.trunc(Math.log10(number)));
-				result = ((Math.round(result * 1e32)) / 1e32).toString(2);
+				result = ((Math.round(result * 1e32)) / 1e32).toString(2).slice(0, 32);
 				result += "e" + ((number).toString(2).length).toString(2);
 				if (negative) return "" + negativeRepresentation + result;
 				return "" + result;
