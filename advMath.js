@@ -33,9 +33,6 @@ var advMath = advMath || (function() {
 			number = number * 180 / pi;
 			return +number;
 		},
-		// WARNING: toBinary is an experimental function, which
-		// will be very innacurrate with bigger numbers, and
-		// sometimes not work at all.
 		toBinary: function(number, negativeRepresentation = "-") {
 			number = +number;
 			if (number !== number) return "NaN";
@@ -51,7 +48,7 @@ var advMath = advMath || (function() {
 				return "Infinity";
 			};
 			if ((number).toString(2).length >= 32) {
-				let result = number / (10 ** Math.trunc(Math.log10(number)));
+				let result = number / (2 ** Math.trunc(Math.log2(number)));
 				result = ((Math.round(result * 1e32)) / 1e32).toString(2).slice(0, 32);
 				result += "e" + ((number).toString(2).length).toString(2);
 				if (negative) return "" + negativeRepresentation + result;
