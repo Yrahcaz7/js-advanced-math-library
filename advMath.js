@@ -1,3 +1,4 @@
+// any functions that use loops will get very slow at a high number of iterations.
 var advMath = advMath || (function() {
 	const pi = Math.PI;
 	return {
@@ -9,12 +10,7 @@ var advMath = advMath || (function() {
 			if (number % 1 === 0 || number % 1 === -0) return Math.round(number);
 			return Math.trunc(number);
 		},
-		// numbers higher than...
-			// 1e7 will start to take a bit longer
-			// 1e8 will take too long to compute for run-time calculations
-			// 1e9 will start slowing down your program significantly
-			// 1e10 will not be usable and may make your program unable to load
-	   	matches: function(number) {
+		matches: function(number) {
 			number = Math.trunc(+number);
 			if (number !== number) return NaN;
 			if (number === Infinity) return Infinity;
